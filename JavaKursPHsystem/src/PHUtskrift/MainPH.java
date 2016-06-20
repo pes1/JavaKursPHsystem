@@ -19,11 +19,11 @@ class Tekniker {
 	//Variables
 	private String namn;
 	
-	
 	//Methods
+	
 	@Override
 	public String toString() {
-		return "tekniker" + namn;
+		return "tekniker" + getNamn();
 	}
 	
 	public String getNamn() {
