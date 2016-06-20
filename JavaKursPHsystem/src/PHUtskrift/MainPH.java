@@ -14,4 +14,23 @@ public class MainPH {
   
 	} 
 
-}
+}//Class
+
+class Tekniker {
+	
+	//Variables
+	private String namn;
+	
+	//Methods
+	
+	@Override
+	public String toString() {
+		return "tekniker" + getNamn();
+	}
+	
+	public String getNamn() {
+		return namn;
+	}
+	
+	
+}//Class
