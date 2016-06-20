@@ -14,7 +14,7 @@ public class Tekniker {
 	
 	@Override
 	public String toString() {
-		return "tekniker" + getNamn();
+		return "Tekniker " + getNamn();
 	}
 	
 	public String getNamn() {
