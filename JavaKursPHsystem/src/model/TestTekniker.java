@@ -11,6 +11,8 @@ public class TestTekniker {
 		Tekniker tekniker = new Tekniker("Kalle");
 		
 		assertTrue(tekniker.getNamn() == "Kalle");
+		
+		assertTrue(tekniker.getBaslön() == 27000);
 	}
 
 }
