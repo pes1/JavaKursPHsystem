@@ -8,8 +8,7 @@ public class MainPH {
 		System.out.println("Hello world  !");
 		System.out.println("Hello world  !");
 		System.out.println("Hello world  !");
-		System.out.println("Magnus");
-  
+System.out.println("Lasse is with you");  
 	} 
 
 }
