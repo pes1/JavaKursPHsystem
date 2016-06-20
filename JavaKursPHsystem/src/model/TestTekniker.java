@@ -5,12 +5,14 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class TestTekniker {
+	
+	String testNamn = "Kalle";
 
 	@Test
 	public void test() {
-		Tekniker tekniker = new Tekniker("Kalle");
+		Tekniker tekniker = new Tekniker("testNamn");
 		
-		assertTrue(tekniker.getNamn() == "Kalle");
+		assertTrue(tekniker.getNamn() == "testNamn");
 		
 		assertTrue(tekniker.getBaslön() == 27000);
 	}
