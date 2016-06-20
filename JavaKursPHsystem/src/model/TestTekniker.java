@@ -15,6 +15,10 @@ public class TestTekniker {
 		assertTrue(tekniker.getNamn() == "testNamn");
 		
 		assertTrue(tekniker.getBasMånadsLön() == 27000);
+		
+		tekniker.setUppTid(.9);
+		
+		assertTrue(tekniker.getBonus() == 1800);
 	}
 
 }

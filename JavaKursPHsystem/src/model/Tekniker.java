@@ -3,10 +3,11 @@ package model;
 public class Tekniker {
 	
 	//Variables
-	private static int basMånadsLön = 27000;
-	private static int basMånadsBonus = 2000;
+	private static long basMånadsLön = 27000;
+	private static long basMånadsBonus = 2000;
 	
 	private String namn;
+	private double uppTid = 1.0;
 	
 	//Constructor
 	public Tekniker(String namn) {
@@ -20,25 +21,40 @@ public class Tekniker {
 		return "Tekniker " + getNamn();
 	}
 	
-	public static int getBasMånadsLön() {
+	public static long getBasMånadsLön() {
 		return basMånadsLön;
 	}
 	
-	public static int getBasMånadsBonus() {
+	public static long getBasMånadsBonus() {
 		return basMånadsBonus;
 	}
 	
-	public int getLön() {
+	public long getLön() {
 		return basMånadsLön;
 	}
 	
-	public int getBonus() {
-		return getBasMånadsBonus();
+	public long getBonus() {
+		return getBasMånadsBonus() * java.lang.Math.round(uppTid);
 	}
 	
 	public String getNamn() {
 		return namn;
 	}
+
+	public double getUppTid() {
+		return uppTid;
+	}
 	
+	public void setUppTid(double nyUppTid) {
+		if(nyUppTid > 1.0) {
+			this.uppTid = 1.0;
+		}
+		else if (nyUppTid < 0.0) {
+			this.uppTid = 0.0;
+		}
+		else {
+			this.uppTid = nyUppTid;
+		}
+	}
 	
 }//Class
