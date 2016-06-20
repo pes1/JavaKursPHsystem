@@ -29,12 +29,12 @@ public class Tekniker {
 		return basMånadsBonus;
 	}
 	
-	public long getLön() {
-		return basMånadsLön;
+	public long getMånadsLön() {
+		return getBasMånadsLön() +  getBonus();
 	}
 	
 	public long getBonus() {
-		return getBasMånadsBonus() * java.lang.Math.round(uppTid);
+		return (long) (((double) getBasMånadsBonus()) *  getUppTid());
 	}
 	
 	public String getNamn() {
