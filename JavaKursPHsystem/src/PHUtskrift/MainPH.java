@@ -10,7 +10,7 @@ public class MainPH {
 		System.out.println("Hello world  !");
 		System.out.println("Magnus");
 		System.out.println("Lars is with you");
-		//--
+		//---
   
 	} 
 
