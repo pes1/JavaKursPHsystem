@@ -3,7 +3,8 @@ package model;
 public class Tekniker {
 	
 	//Variables
-	private static int baslön = 27000;
+	private static int basMånadslön = 27000;
+	private static int basbonus = 2000;
 	
 	private String namn;
 	
@@ -19,8 +20,16 @@ public class Tekniker {
 		return "Tekniker " + getNamn();
 	}
 	
-	public static int getBaslön() {
-		return baslön;
+	public static int getBasmånadslön() {
+		return basMånadslön;
+	}
+	
+	public static int getBasbonus() {
+		return basbonus;
+	}
+	
+	public int getBonus() {
+		return getBasbonus();
 	}
 	
 	public String getNamn() {
