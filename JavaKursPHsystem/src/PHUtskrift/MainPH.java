@@ -21,6 +21,11 @@ class Tekniker {
 	//Variables
 	private String namn;
 	
+	//Constructor
+	public Tekniker(String namn) {
+		this.namn = namn;
+	}
+	
 	//Methods
 	
 	@Override
