@@ -14,6 +14,7 @@ abstract class CLI {
 			System.out.println("==================");
 
 			System.out.println("1. Skapa ny anställd");
+			System.out.println("2. Visa alla anställda");
 			System.out.println("\n0. Avsluta");
 
 			do{
@@ -24,8 +25,13 @@ abstract class CLI {
 			kommando = input.charAt(0);
 			switch(kommando) {
 			case '1':
-				System.out.println("skapa ny anställd");
+				System.out.println("debug: skapa ny anställd");
 				break;
+				
+			case '2':
+				System.out.println("debug: vsia alla anställda");
+				break;
+
 			
 			case '0':
 				scanner.close();
