@@ -3,8 +3,6 @@ package model;
 public abstract class Anställd {
 
 	//Variables
-	private static long basMånadsLön ;
-	private static long basMånadsBonus ;
 	
 	private String namn;
 	
