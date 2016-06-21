@@ -10,7 +10,7 @@ public class Tekniker extends Anställd {
 
 	//Constructor
 	public Tekniker(String namn) {
-		super(namn);  				//-- Anropar överklassens konstruktor.
+		super(namn);  	//-- Anropar överklassens konstruktor.
 	}
 
 	//Methods ---------------------------------------------------

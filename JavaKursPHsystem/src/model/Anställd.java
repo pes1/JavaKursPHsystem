@@ -11,6 +11,8 @@ public abstract class Anställd {
 		this.namn = namn;
 	}
 	
+	//Methods
+	
 	public abstract long getBasMånadsLön();
 	
 	public abstract long getBonus();
@@ -22,10 +24,5 @@ public abstract class Anställd {
 	public String getNamn() {
 		return namn;
 	}
-	
-	
-	
-	
-	
 	
 } //-- of class Anställd

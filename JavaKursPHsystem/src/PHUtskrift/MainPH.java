@@ -6,7 +6,6 @@ public class MainPH {
 
 	public static void main(String[] args) {
 		
-//		Tekniker tekniker = new Tekniker("Kalle");
 		Tekniker tekniker = new Tekniker("Kalle");
 		
 		tekniker.setUppTid(.999);
