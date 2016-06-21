@@ -1,5 +1,11 @@
 package model;
-
+/*-----------------------------------------------
+ * 
+ * JavaProgrammer 
+ * är nästan identisk med Tekniker
+ * 
+ *-----------------------------------------------
+ */
 public class JavaProgrammer extends Anställd {
 
 	//Variables
@@ -13,7 +19,7 @@ public class JavaProgrammer extends Anställd {
 	public JavaProgrammer(String namn) {
 //		this.namn = namn;
 		super(namn);  				//-- Anropar överklassens konstruktor.
-
+ 
 	}
 	
 	//Methods ---------------------------------------------------
