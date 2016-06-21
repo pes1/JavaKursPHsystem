@@ -9,6 +9,8 @@ public class TestAnställd {
 	public void test() {
 		Anställd anställd = new Tekniker("Kalle");
 		
+		assertTrue(anställd.getNamn().equals("Kalle"));
+		
 	}
 
 }
