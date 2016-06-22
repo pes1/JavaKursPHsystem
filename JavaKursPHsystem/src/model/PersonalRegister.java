@@ -20,6 +20,41 @@ public class PersonalRegister {
 		return personalCollection.add(anställd);
 	}
 	
+	public boolean taBortAnställd(String namn) {
+		for (Anställd anställd : personalCollection) {
+			if (anställd.getNamn().trim().equalsIgnoreCase(namn)) {
+				return personalCollection.remove(anställd);
+			}
+		}
+		return false;
+	}
+	
+	public boolean finnsAnställd(String namn) {
+		for (Anställd anställd : personalCollection) {
+			if (anställd.getNamn().trim().equalsIgnoreCase(namn)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Anställd slåUppAnställd (String namn) {
+		for (Anställd anställd : personalCollection) {
+			if (anställd.getNamn().trim().equalsIgnoreCase(namn)) {
+				return anställd;
+			}
+		}
+		return null;
+	}
+	
+	public void uppdateraAnställd (String namn) {
+		for (Anställd anställd : personalCollection) {
+			if (anställd.getNamn().trim().equalsIgnoreCase(namn)) {
+				anställd.setNamn(namn);
+			}
+		}
+	}
+	
 	public Set<Anställd> getKopia (){
 		return new HashSet<Anställd>(personalCollection);
 	}

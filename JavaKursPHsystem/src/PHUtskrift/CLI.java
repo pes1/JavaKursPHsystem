@@ -1,18 +1,29 @@
 package PHUtskrift;
 
 import java.util.HashSet;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Set;
 
 import model.Anställd;
 import model.JavaProgrammer;
 import model.PersonalRegister;
+import model.Receptionist;
 import model.Tekniker;
 
 abstract class CLI {
 
 	static void visaCLI(PersonalRegister personalRegister, Scanner scanner){
 		String kommandoString;
+		String anställdUppdateraString;
+		String nyttNamn;
+		Anställd anställdUppdatera;
+		String nyUppTidString;
+		double nyUppTid = 0.0;
+		boolean uppdateraUppTid = false;
+		String nyttBetygString;
+		int nyttBetyg = 0;
+		boolean sättBetyg = false;
 		char kommando = '#';
 
 		while(true){
@@ -25,6 +36,7 @@ abstract class CLI {
 			System.out.println("2. Visa alla anställda");
 			System.out.println("3. Visa lönestatistik");
 			System.out.println("4. Visa personalfördelning");
+			System.out.println("5. Uppdatera anställd");
 			System.out.println("\n0. Avsluta");
 
 			do {
@@ -77,6 +89,89 @@ abstract class CLI {
 				//personalfördenling (stapeldiagram?)
 				break;
 
+			case '5':
+				//uppdatera anställd
+				System.out.print("\nNamn på anställd: ");
+				anställdUppdateraString = scanner.nextLine();
+				anställdUppdatera = personalRegister.slåUppAnställd(anställdUppdateraString.trim());
+
+				if (anställdUppdatera == null) {
+					System.out.println("Det finns ingen anställd med det namnet.");
+				} else {
+					System.out.print("Nytt namn för " + anställdUppdatera.getNamn() + " (Enter för att hoppa över): ");
+					nyttNamn = scanner.nextLine();
+					try {
+						anställdUppdatera.setNamn(nyttNamn);
+					} catch (IllegalArgumentException e) {
+						System.out.println("--hoppar över--");
+					}
+
+					if (anställdUppdatera instanceof Tekniker) {
+						//Uppdatera attribut specifika för Tekniker
+						System.out.print("Upptid (" + ((Tekniker) anställdUppdatera).getUppTid() + "): ");
+
+						uppdateraUppTid = false;
+						try {
+							nyUppTid = Double.parseDouble(scanner.nextLine().trim());
+							uppdateraUppTid = true;
+						} catch (NumberFormatException e) {
+							System.out.println("--ogilting input, hoppar över--");
+						}
+
+						if (uppdateraUppTid) {
+							try {
+								((Tekniker) anställdUppdatera).setUppTid(nyUppTid);
+							} catch (IllegalArgumentException e) {
+								System.out.println("--ogiltig input, hoppar över--");
+							}
+						}
+
+					}//Uppdatera Tekniker
+					
+					if (anställdUppdatera instanceof JavaProgrammer) {
+						//Uppdatera attribut specifika för Javaprogrammerare
+						System.out.print("Upptid " + ((JavaProgrammer) anställdUppdatera).getUppTid() + "): ");
+						
+						uppdateraUppTid = false;
+						try {
+							nyUppTid = Double.parseDouble(scanner.nextLine().trim());
+							uppdateraUppTid = true;
+						} catch (NumberFormatException e) {
+							System.out.println("--ogilting input, hoppar över--");
+						}
+						
+						if (uppdateraUppTid) {
+							try {
+								((JavaProgrammer) anställdUppdatera).setUppTid(nyUppTid);
+							} catch (IllegalArgumentException e) {
+							}
+						}
+
+					}//Uppdatera Javaprogrammerare
+					
+					if (anställdUppdatera instanceof Receptionist) {
+						//Uppdatera attribut specifika för Receptionister
+						System.out.print("Sätt betyg för receptionisten " + ((Receptionist) anställdUppdatera).getNamn() + " (1-5), tomt för att hoppa över: ");
+						
+						sättBetyg = false;
+						try {
+							nyttBetyg = Integer.parseInt(scanner.nextLine().trim());
+							sättBetyg = true;
+						} catch (NumberFormatException e) {
+							System.out.println("--ogiltig input, hoppar över--");
+						}
+						
+						if (sättBetyg) {
+							try {
+								((Receptionist) anställdUppdatera).setBetyg(nyttBetyg);
+							} catch (IllegalArgumentException e) {
+								System.out.println("--ogiltig input, hoppar över--");
+							}
+						}
+					}//Uppdatera Receptionist
+				}
+
+				break;
 
 			case '0':
 				return;

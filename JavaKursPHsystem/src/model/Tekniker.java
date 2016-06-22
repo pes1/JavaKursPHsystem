@@ -44,16 +44,10 @@ public class Tekniker extends Anställd {
 		return uppTid;
 	}
 
-	public void setUppTid(double nyUppTid) {
-		if(nyUppTid > 1.0) {
-			this.uppTid = 1.0;
-		}
-		else if (nyUppTid < 0.0) {
-			this.uppTid = 0.0;
-		}
-		else {
-			this.uppTid = nyUppTid;
-		}
+	public void setUppTid(double nyUppTid) throws IllegalArgumentException {
+		if (nyUppTid > 1.0) throw new IllegalArgumentException("Upptid kan inte vara större än 1.");
+		if (nyUppTid < 0.0) throw new IllegalArgumentException("Upptid kan inte vara mindre än 0.");
+		this.uppTid = nyUppTid;
 	}
-
+	
 }//Class

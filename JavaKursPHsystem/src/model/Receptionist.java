@@ -41,6 +41,7 @@ public class Receptionist extends Anställd {
 	
 	// Sätt ett nytt betyg som skriver över det älsta betyget, 
 	// samt inkrementera variabeln för älsta betyg
+	// TODO: kasta IllegalArgumentException vid ogiltig indata
 	public void setBetyg(int nyttBetyg) {
 		betyg [nästaBetyg++] = nyttBetyg;
 		nästaBetyg = nästaBetyg % betyg.length;

@@ -24,9 +24,17 @@ public abstract class Anställd {
 	public abstract long getBasMånadsBonus();
 
 	public abstract long getMånadsLön();
-		
+			
 	public String getNamn() {
 		return namn;
 	}
 	
+	public void setNamn(String namn) throws IllegalArgumentException {
+		if (namn.trim().length() == 0) {
+			throw new IllegalArgumentException("Namnet får inte vara tomt");
+		}
+		
+		this.namn = namn.trim();
+	}
+		
 } //-- of class Anställd
