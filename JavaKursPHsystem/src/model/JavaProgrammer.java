@@ -12,12 +12,10 @@ public class JavaProgrammer extends Anställd {
 	private static long basMånadsLön   = 29000;
 	private static long basMånadsBonus = 1001;
 	
-//	private String namn;
 	private double uppTid = 1.0;
 	
 	//Constructor
 	public JavaProgrammer(String namn) {
-//		this.namn = namn;
 		super(namn);  				//-- Anropar överklassens konstruktor.
  
 	}
@@ -43,8 +41,6 @@ public class JavaProgrammer extends Anställd {
 	public long getBasMånadsLön(){
 		return basMånadsLön;
 	}
-
-	
 	
 	@Override
 	public long getMånadsLön() {
