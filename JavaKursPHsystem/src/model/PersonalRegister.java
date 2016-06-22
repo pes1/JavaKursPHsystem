@@ -20,7 +20,7 @@ public class PersonalRegister {
 		return personalCollection.add(anställd);
 	}
 	
-	public Set<Anställd> getPersonalRegister (){
+	public Set<Anställd> getKopia (){
 		return new HashSet<Anställd>(personalCollection);
 	}
 	
