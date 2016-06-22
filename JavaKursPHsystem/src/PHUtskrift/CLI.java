@@ -52,7 +52,8 @@ abstract class CLI {
 				break;
 
 			case '3':
-				//lönestatistik
+				Anställd högstBetald = personalRegister.högstBetald();
+				System.out.println("\nHögst betald: " + (högstBetald == null ? "--ingen--" : högstBetald + ", " + högstBetald.getMånadsLön()) );
 				break;
 
 			case '4':
