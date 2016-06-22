@@ -22,6 +22,8 @@ abstract class CLI {
 
 			System.out.println("1. Skapa ny anställd");
 			System.out.println("2. Visa alla anställda");
+			System.out.println("3. Visa lönestatistik");
+			System.out.println("4. Visa personalfördelning");
 			System.out.println("\n0. Avsluta");
 
 			do {
@@ -47,6 +49,14 @@ abstract class CLI {
 						System.out.println(anställd);
 					}
 				}
+				break;
+				
+			case '3':
+				//lönestatistik
+				break;
+				
+			case '4':
+				//personalfördenling (stapeldiagram?)
 				break;
 
 
