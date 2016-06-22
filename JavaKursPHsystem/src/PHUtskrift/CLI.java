@@ -63,21 +63,23 @@ abstract class CLI {
 
 	}
 
-	static void läggTillAnställd (PersonalRegister personalRegister, Scanner scanner) {
+	private static void läggTillAnställd (PersonalRegister personalRegister, Scanner scanner) {
 
-		String namn = "";
-		String personalString = "";
+		String namn;
+		String personalString;
 		char personalKategori = '#';
 
-		System.out.print("\nNamn: ");
-		do {
-			namn = scanner.nextLine().trim();
-		} while (namn.length() == 0);
+		System.out.print("\nNamn (För att avbryta, tryck enter): ");
+		namn = scanner.nextLine().trim();
+		if(namn.length() == 0 ) {
+			return;
+		}
 
 		System.out.println("\nVälj personalkategori:");
 		System.out.println("======================");
 		System.out.println("1. Javaprogrammerare");
 		System.out.println("2. Tekniker");
+		System.out.println("0. (Avbryt)");
 
 		do {
 			personalString = scanner.nextLine().trim();
@@ -94,6 +96,9 @@ abstract class CLI {
 		case '2':
 			System.out.println(personalRegister.läggTillAnställd(new Tekniker(namn)));
 			break;
+			
+		case '+':
+			return;
 
 		default:
 			System.out.println("Okänd personalkategori");
