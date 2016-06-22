@@ -21,8 +21,8 @@ public class PersonalRegister {
 		return personalCollection.add(anställd);
 	}
 	
-	public Collection<Anställd> getPersonalRegister (){
-		return personalCollection;
+	public Set<Anställd> getPersonalRegister (){
+		return new HashSet<Anställd>(personalCollection);
 	}
 	
 	public Anställd högstBetald() {
