@@ -14,6 +14,9 @@ abstract class CLI {
 	static void visaCLI(PersonalRegister personalRegister, Scanner scanner){
 		String kommandoString;
 		char kommando = '#';
+		int antalRoller = 3; //antal Yrkeskategorier
+		int[] stapelData = new int[antalRoller + 1];
+
 
 		while(true){
 			kommandoString = "";
@@ -74,9 +77,17 @@ abstract class CLI {
 				break;
 
 			case '4':
-				//personalfördenling (stapeldiagram?)
+				//personalfördenling (stapeldiagram?) 
+				stapelData = personalRegister.getAntalAnställda();
+				System.out.println("Totalt antal anställda: " + stapelData[0]);
+				System.out.println("Programmerare:          " + stapelData[1]);
+				for(int i=0;i>stapelData[1];i++){
+					System.out.println("*");
+				}
+				System.out.println("---");
+				System.out.println("Receptionister:         " + stapelData[2]);
+				System.out.println("Tekniker:               " + stapelData[3]);
 				break;
-
 
 			case '0':
 				return;

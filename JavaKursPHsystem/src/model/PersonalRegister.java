@@ -23,7 +23,31 @@ public class PersonalRegister {
 	public Set<Anställd> getKopia (){
 		return new HashSet<Anställd>(personalCollection);
 	}
-	
+
+	public int[] getAntalAnställda(){
+		int antalTotalt = 0;
+		int antalJavaProgrammer = 0;
+		int antalReceptionist = 0;
+		int antalTekniker = 0;
+		
+		for (Anställd anställd: personalCollection) {
+			if (anställd instanceof JavaProgrammer) {
+				antalJavaProgrammer ++;
+			}
+			if (anställd instanceof Receptionist) {
+				antalReceptionist ++;
+			}
+			if (anställd instanceof Tekniker) {
+				antalTekniker ++;
+			}
+			antalTotalt++;		
+		}
+
+		int[] stapelData = {antalTotalt,antalJavaProgrammer,antalReceptionist,antalTekniker};
+		return stapelData;
+	}
+
+
 	public Anställd högstBetald() {
 		if (personalCollection.isEmpty()) return null;
 		
