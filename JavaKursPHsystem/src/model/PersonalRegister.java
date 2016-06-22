@@ -12,7 +12,11 @@ public class PersonalRegister {
 	
 	public boolean läggTillAnställd(Anställd anställd){
 		System.out.println("Debug: ny anställd");
-		if(anställd == null) return false;
+		if(anställd == null) {
+			return false;
+		} else if (anställd.getNamn().length() == 0) {
+			return false;
+		}
 		
 		return personalCollection.add(anställd);
 	}
