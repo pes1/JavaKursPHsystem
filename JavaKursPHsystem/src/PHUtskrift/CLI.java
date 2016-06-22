@@ -50,11 +50,11 @@ abstract class CLI {
 					}
 				}
 				break;
-				
+
 			case '3':
 				//lönestatistik
 				break;
-				
+
 			case '4':
 				//personalfördenling (stapeldiagram?)
 				break;
@@ -99,18 +99,29 @@ abstract class CLI {
 
 		switch (personalKategori) {
 		case '1':
-			return (personalRegister.läggTillAnställd(new JavaProgrammer(namn)));
+			try {
+				return (personalRegister.läggTillAnställd(new JavaProgrammer(namn)));
+			} catch (IllegalArgumentException e) {
+				System.out.println("Otillåtet namn.");
+				return false;
+			}
+
 
 		case '2':
-			return (personalRegister.läggTillAnställd(new Tekniker(namn)));
-			
+			try {
+				return (personalRegister.läggTillAnställd(new Tekniker(namn)));
+			} catch (IllegalArgumentException e) {
+				System.out.println("Otillåtet namn.");
+				return false;
+			}
+
 		case '0':
 			return false;
 
 		default:
 			System.out.println("Okänd personalkategori");
 			return false;
-			} //switch
+		} //switch
 
 	} //läggTillAnställd
 
