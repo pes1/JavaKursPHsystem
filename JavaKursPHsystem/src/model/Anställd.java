@@ -3,8 +3,6 @@ package model;
 public abstract class Anställd {
 
 	//Variables
-	private static long basMånadsLön ;
-	private static long basMånadsBonus ;
 	
 	private String namn;
 	
@@ -12,6 +10,8 @@ public abstract class Anställd {
 	public Anställd(String namn) {
 		this.namn = namn;
 	}
+	
+	//Methods
 	
 	public abstract long getBasMånadsLön();
 	
@@ -24,10 +24,5 @@ public abstract class Anställd {
 	public String getNamn() {
 		return namn;
 	}
-	
-	
-	
-	
-	
 	
 } //-- of class Anställd

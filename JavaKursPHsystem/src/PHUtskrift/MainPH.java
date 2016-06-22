@@ -1,23 +1,25 @@
 package PHUtskrift;
 
-import model.Tekniker;
+import java.util.Scanner;
+
+import model.PersonalRegister;
 
 public class MainPH {
 
-	public static void main(String[] args) {
-		
-//		Tekniker tekniker = new Tekniker("Kalle");
-		Tekniker tekniker = new Tekniker("Kalle");
-		
-		tekniker.setUppTid(.999);
+	static final Scanner scanner = new Scanner(System.in);
 
-		System.out.println("Namn: "           + tekniker.getNamn());
-		System.out.println("upptid: "         + tekniker.getUppTid());
-		System.out.println("basmånadsbonus: " + tekniker.getBasMånadsBonus());
-		System.out.println("bonus: "          + tekniker.getBonus());
-		System.out.println("basmånadsön: "    + tekniker.getBasMånadsLön());
-		System.out.println("slutlön: "        + tekniker.getMånadsLön());
-	} 
+
+	public static void main(String[] args) {
+
+		PersonalRegister personalRegister = new PersonalRegister();
+		
+		CLI.visaCLI(personalRegister, scanner);
+		
+		scanner.close();
+
+		System.out.println("\nProgrammet avslutas.");
+
+	}//main
 
 }//Class
 
