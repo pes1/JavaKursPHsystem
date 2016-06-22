@@ -22,6 +22,8 @@ abstract class CLI {
 
 			System.out.println("1. Skapa ny anställd");
 			System.out.println("2. Visa alla anställda");
+			System.out.println("3. Visa lönestatistik");
+			System.out.println("4. Visa personalfördelning");
 			System.out.println("\n0. Avsluta");
 
 			do {
@@ -33,7 +35,7 @@ abstract class CLI {
 
 			switch(kommando) {
 			case '1':
-				läggTillAnställd(personalRegister, scanner);
+				System.out.println(läggTillAnställd(personalRegister, scanner));
 				break;
 
 			case '2':
@@ -47,6 +49,14 @@ abstract class CLI {
 						System.out.println(anställd);
 					}
 				}
+				break;
+
+			case '3':
+				//lönestatistik
+				break;
+
+			case '4':
+				//personalfördenling (stapeldiagram?)
 				break;
 
 
@@ -63,21 +73,23 @@ abstract class CLI {
 
 	}
 
-	static void läggTillAnställd (PersonalRegister personalRegister, Scanner scanner) {
+	private static boolean läggTillAnställd (PersonalRegister personalRegister, Scanner scanner) {
 
-		String namn = "";
-		String personalString = "";
+		String namn;
+		String personalString;
 		char personalKategori = '#';
 
-		System.out.print("\nNamn: ");
-		do {
-			namn = scanner.nextLine().trim();
-		} while (namn.length() == 0);
+		System.out.print("\nNamn (För att avbryta, tryck enter): ");
+		namn = scanner.nextLine().trim();
+		if(namn.length() == 0 ) {
+			return false;
+		}
 
 		System.out.println("\nVälj personalkategori:");
 		System.out.println("======================");
 		System.out.println("1. Javaprogrammerare");
 		System.out.println("2. Tekniker");
+		System.out.println("0. (Avbryt)");
 
 		do {
 			personalString = scanner.nextLine().trim();
@@ -87,17 +99,28 @@ abstract class CLI {
 
 		switch (personalKategori) {
 		case '1':
-			System.out.println(personalRegister.läggTillAnställd(new JavaProgrammer(namn)));
+			try {
+				return (personalRegister.läggTillAnställd(new JavaProgrammer(namn)));
+			} catch (IllegalArgumentException e) {
+				System.out.println("Otillåtet namn.");
+				return false;
+			}
 
-			break;
 
 		case '2':
-			System.out.println(personalRegister.läggTillAnställd(new Tekniker(namn)));
-			break;
+			try {
+				return (personalRegister.läggTillAnställd(new Tekniker(namn)));
+			} catch (IllegalArgumentException e) {
+				System.out.println("Otillåtet namn.");
+				return false;
+			}
+
+		case '0':
+			return false;
 
 		default:
 			System.out.println("Okänd personalkategori");
-			break;
+			return false;
 		} //switch
 
 	} //läggTillAnställd

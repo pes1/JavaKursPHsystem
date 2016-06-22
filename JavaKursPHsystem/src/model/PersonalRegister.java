@@ -12,14 +12,32 @@ public class PersonalRegister {
 	
 	public boolean läggTillAnställd(Anställd anställd){
 		System.out.println("Debug: ny anställd");
-		if(anställd == null) return false;
+		if(anställd == null) {
+			return false;
+		} else if (anställd.getNamn().length() == 0) {
+			return false;
+		}
 		
 		return personalCollection.add(anställd);
 	}
 	
-	public Collection<Anställd> getPersonalRegister (){
-		return personalCollection;
+	public Set<Anställd> getPersonalRegister (){
+		return new HashSet<Anställd>(personalCollection);
 	}
 	
+	public Anställd högstBetald() {
+		if (personalCollection.isEmpty()) return null;
+		
+		Anställd högstBetald = null;
+		
+		for (Anställd anställd: personalCollection) {
+			if (högstBetald == null) {
+				högstBetald = anställd;
+			} else if (anställd.getMånadsLön() > högstBetald.getMånadsLön()) {
+				högstBetald = anställd;
+			}			
+		}
+		return högstBetald;
+	}
 	
 }

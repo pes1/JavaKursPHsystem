@@ -7,7 +7,11 @@ public abstract class Anställd {
 	private String namn;
 	
 	//Constructor
-	public Anställd(String namn) {
+	public Anställd(String namn) throws IllegalArgumentException{
+		if(namn.trim().length() == 0) {
+			throw new IllegalArgumentException("Namnet måste innehålla minst ett tecken.");
+		}
+		
 		this.namn = namn;
 	}
 	
