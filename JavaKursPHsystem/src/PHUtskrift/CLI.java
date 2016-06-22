@@ -7,6 +7,7 @@ import java.util.Set;
 import model.Anställd;
 import model.JavaProgrammer;
 import model.PersonalRegister;
+import model.Receptionist;
 import model.Tekniker;
 
 abstract class CLI {
@@ -130,7 +131,8 @@ abstract class CLI {
 		System.out.println("\nVälj personalkategori:");
 		System.out.println("======================");
 		System.out.println("1. Javaprogrammerare");
-		System.out.println("2. Tekniker");
+		System.out.println("2. Receptionist");
+		System.out.println("3. Tekniker");
 		System.out.println("0. (Avbryt)");
 
 		do {
@@ -148,8 +150,15 @@ abstract class CLI {
 				return false;
 			}
 
-
 		case '2':
+			try {
+				return (personalRegister.läggTillAnställd(new Receptionist(namn)));
+			} catch (IllegalArgumentException e) {
+				System.out.println("Otillåtet namn.");
+				return false;
+			}
+
+		case '3':
 			try {
 				return (personalRegister.läggTillAnställd(new Tekniker(namn)));
 			} catch (IllegalArgumentException e) {
