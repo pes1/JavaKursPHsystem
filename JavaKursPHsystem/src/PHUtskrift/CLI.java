@@ -79,14 +79,27 @@ abstract class CLI {
 			case '4':
 				//personalfördenling (stapeldiagram?) 
 				stapelData = personalRegister.getAntalAnställda();
-				System.out.println("Totalt antal anställda: " + stapelData[0]);
-				System.out.println("Programmerare:          " + stapelData[1]);
-				for(int i=0;i>stapelData[1];i++){
-					System.out.println("*");
+				System.out.print("Totalt antal anställda: " + stapelData[0] + " ");
+				for(int i=0; i<stapelData[0]; i++){
+					System.out.print("*");
 				}
-				System.out.println("---");
-				System.out.println("Receptionister:         " + stapelData[2]);
-				System.out.println("Tekniker:               " + stapelData[3]);
+				System.out.println();
+				System.out.println("varav");
+				System.out.print("Programmerare:          " + stapelData[1] + " ");
+				for(int i=0; i<stapelData[1]; i++){
+					System.out.print("*");
+				}
+				System.out.println();
+				System.out.print("Receptionister:         " + stapelData[2] + " ");
+				for(int i=0; i<stapelData[2]; i++){
+					System.out.print("*");
+				}
+				System.out.println();				
+				System.out.print("Tekniker:               " + stapelData[3] + " ");
+				for(int i=0; i<stapelData[3]; i++){
+					System.out.print("*");
+				}
+				System.out.println();
 				break;
 
 			case '0':
