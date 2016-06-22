@@ -1,15 +1,14 @@
 package model;
 
-
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 public class PersonalRegister {
 
+	//Variables
 	private Set<Anställd> personalCollection = new HashSet<Anställd>();
 	
-	
+	//Methods
 	public boolean läggTillAnställd(Anställd anställd){
 		System.out.println("Debug: ny anställd");
 		if(anställd == null) {
@@ -21,7 +20,7 @@ public class PersonalRegister {
 		return personalCollection.add(anställd);
 	}
 	
-	public Set<Anställd> getPersonalRegister (){
+	public Set<Anställd> getKopia (){
 		return new HashSet<Anställd>(personalCollection);
 	}
 	

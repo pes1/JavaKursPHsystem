@@ -12,7 +12,7 @@ public abstract class Anställd {
 			throw new IllegalArgumentException("Namnet måste innehålla minst ett tecken.");
 		}
 		
-		this.namn = namn;
+		this.namn = namn.trim();
 	}
 	
 	//Methods

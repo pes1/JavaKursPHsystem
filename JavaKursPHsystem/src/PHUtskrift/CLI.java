@@ -1,7 +1,8 @@
 package PHUtskrift;
 
-import java.util.Collection;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 import model.Anställd;
 import model.JavaProgrammer;
@@ -39,7 +40,7 @@ abstract class CLI {
 				break;
 
 			case '2':
-				Collection<Anställd> personalCollection = personalRegister.getPersonalRegister();
+				Set<Anställd> personalCollection = personalRegister.getKopia();
 				System.out.println("\nSamtliga anställda:");
 				System.out.println("===================");
 				if (personalCollection.isEmpty()){
@@ -52,7 +53,24 @@ abstract class CLI {
 				break;
 
 			case '3':
-				//lönestatistik
+				Anställd högstBetald = personalRegister.högstBetald();
+				System.out.println("\nHögst betald: " + (högstBetald == null ? "--ingen--" : högstBetald + ", " + högstBetald.getMånadsLön()) );
+
+				Set<Anställd> personalSet = new HashSet<Anställd>(personalRegister.getKopia());
+				double medelLön;
+
+				if(personalSet.size() == 0){
+					medelLön = 0;
+				} else {
+					long totalLön = 0L;
+					for (Anställd anställd : personalSet) {
+						totalLön += anställd.getMånadsLön();
+					}
+
+					medelLön = ((double)totalLön / personalSet.size());
+				}
+				System.out.println("\nMedellön: " + medelLön);
+
 				break;
 
 			case '4':
