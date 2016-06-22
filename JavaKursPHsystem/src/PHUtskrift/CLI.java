@@ -35,7 +35,7 @@ abstract class CLI {
 
 			switch(kommando) {
 			case '1':
-				läggTillAnställd(personalRegister, scanner);
+				System.out.println(läggTillAnställd(personalRegister, scanner));
 				break;
 
 			case '2':
@@ -73,7 +73,7 @@ abstract class CLI {
 
 	}
 
-	private static void läggTillAnställd (PersonalRegister personalRegister, Scanner scanner) {
+	private static boolean läggTillAnställd (PersonalRegister personalRegister, Scanner scanner) {
 
 		String namn;
 		String personalString;
@@ -82,7 +82,7 @@ abstract class CLI {
 		System.out.print("\nNamn (För att avbryta, tryck enter): ");
 		namn = scanner.nextLine().trim();
 		if(namn.length() == 0 ) {
-			return;
+			return false;
 		}
 
 		System.out.println("\nVälj personalkategori:");
@@ -99,21 +99,18 @@ abstract class CLI {
 
 		switch (personalKategori) {
 		case '1':
-			System.out.println(personalRegister.läggTillAnställd(new JavaProgrammer(namn)));
-
-			break;
+			return (personalRegister.läggTillAnställd(new JavaProgrammer(namn)));
 
 		case '2':
-			System.out.println(personalRegister.läggTillAnställd(new Tekniker(namn)));
-			break;
+			return (personalRegister.läggTillAnställd(new Tekniker(namn)));
 			
-		case '+':
-			return;
+		case '0':
+			return false;
 
 		default:
 			System.out.println("Okänd personalkategori");
-			break;
-		} //switch
+			return false;
+			} //switch
 
 	} //läggTillAnställd
 
