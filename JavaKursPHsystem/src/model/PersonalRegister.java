@@ -25,5 +25,19 @@ public class PersonalRegister {
 		return personalCollection;
 	}
 	
+	public Anställd högstBetald() {
+		if (personalCollection.isEmpty()) return null;
+		
+		Anställd högstBetald = null;
+		
+		for (Anställd anställd: personalCollection) {
+			if (högstBetald == null) {
+				högstBetald = anställd;
+			} else if (anställd.getMånadsLön() > högstBetald.getMånadsLön()) {
+				högstBetald = anställd;
+			}			
+		}
+		return högstBetald;
+	}
 	
 }
