@@ -24,7 +24,7 @@ public abstract class Anställd {
 	public abstract long getBasMånadsBonus();
 
 	public abstract long getMånadsLön();
-			
+	
 	public String getNamn() {
 		return namn;
 	}

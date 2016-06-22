@@ -25,6 +25,9 @@ abstract class CLI {
 		int nyttBetyg = 0;
 		boolean sättBetyg = false;
 		char kommando = '#';
+		int antalRoller = 3; //antal Yrkeskategorier
+		int[] stapelData = new int[antalRoller + 1];
+
 
 		while(true){
 			kommandoString = "";
@@ -36,7 +39,7 @@ abstract class CLI {
 			System.out.println("2. Visa alla anställda");
 			System.out.println("3. Visa lönestatistik");
 			System.out.println("4. Visa personalfördelning");
-			System.out.println("5. Uppdatera anställd");
+			System.out.println("6. Uppdatera anställd");
 			System.out.println("\n0. Avsluta");
 
 			do {
@@ -86,10 +89,32 @@ abstract class CLI {
 				break;
 
 			case '4':
-				//personalfördenling (stapeldiagram?)
+				//personalfördenling (stapeldiagram?) 
+				stapelData = personalRegister.getAntalAnställda();
+				System.out.print("Totalt antal anställda: " + stapelData[0] + " ");
+				for(int i=0; i<stapelData[0]; i++){
+					System.out.print("*");
+				}
+				System.out.println();
+				System.out.println("varav");
+				System.out.print("Programmerare:          " + stapelData[1] + " ");
+				for(int i=0; i<stapelData[1]; i++){
+					System.out.print("*");
+				}
+				System.out.println();
+				System.out.print("Receptionister:         " + stapelData[2] + " ");
+				for(int i=0; i<stapelData[2]; i++){
+					System.out.print("*");
+				}
+				System.out.println();				
+				System.out.print("Tekniker:               " + stapelData[3] + " ");
+				for(int i=0; i<stapelData[3]; i++){
+					System.out.print("*");
+				}
+				System.out.println();
 				break;
 
-			case '5':
+			case '6':
 				//uppdatera anställd
 				System.out.print("\nNamn på anställd: ");
 				anställdUppdateraString = scanner.nextLine();
@@ -146,7 +171,6 @@ abstract class CLI {
 							} catch (IllegalArgumentException e) {
 							}
 						}
-
 					}//Uppdatera Javaprogrammerare
 					
 					if (anställdUppdatera instanceof Receptionist) {
@@ -201,7 +225,8 @@ abstract class CLI {
 		System.out.println("\nVälj personalkategori:");
 		System.out.println("======================");
 		System.out.println("1. Javaprogrammerare");
-		System.out.println("2. Tekniker");
+		System.out.println("2. Receptionist");
+		System.out.println("3. Tekniker");
 		System.out.println("0. (Avbryt)");
 
 		do {
@@ -219,8 +244,15 @@ abstract class CLI {
 				return false;
 			}
 
-
 		case '2':
+			try {
+				return (personalRegister.läggTillAnställd(new Receptionist(namn)));
+			} catch (IllegalArgumentException e) {
+				System.out.println("Otillåtet namn.");
+				return false;
+			}
+
+		case '3':
 			try {
 				return (personalRegister.läggTillAnställd(new Tekniker(namn)));
 			} catch (IllegalArgumentException e) {
