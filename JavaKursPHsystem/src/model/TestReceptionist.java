@@ -13,7 +13,6 @@ public class TestReceptionist {
 		assertTrue(r.getNamn() == "testNamn"); //dvs inte "ReceptionsNisse"		
 		assertTrue(r.getBasMånadsLön() == 22000);
 		assertTrue(r.getBasMånadsBonus() == 1000);
-		assertTrue(r.getKundnöjdhet() == 2);
 		assertTrue(r.getBonus() == 2000);		
 		assertTrue(r.getMånadsLön() == 24000);
 		

@@ -1,7 +1,7 @@
 package PHUtskrift;
 
 import java.util.HashSet;
-import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -17,11 +17,8 @@ abstract class CLI {
 		String kommandoString;
 		String anställdUppdateraString;
 		String nyttNamn;
-		Anställd anställdUppdatera;
-		String nyUppTidString;
 		double nyUppTid = 0.0;
 		boolean uppdateraUppTid = false;
-		String nyttBetygString;
 		int nyttBetyg = 0;
 		boolean sättBetyg = false;
 		char kommando = '#';
@@ -39,6 +36,7 @@ abstract class CLI {
 			System.out.println("2. Visa alla anställda");
 			System.out.println("3. Visa lönestatistik");
 			System.out.println("4. Visa personalfördelning");
+			System.out.println("5. Visa anställd"); 
 			System.out.println("6. Uppdatera anställd");
 			System.out.println("\n0. Avsluta");
 
@@ -89,7 +87,8 @@ abstract class CLI {
 				break;
 
 			case '4':
-				//personalfördenling (stapeldiagram?) 
+				//personalfördenling, stapeldiagram
+				//TODO: hantera okända personalkategorier, för den händelse någon lägger till en ny kategori utan att uppdatera denna klass
 				stapelData = personalRegister.getAntalAnställda();
 				System.out.print("Totalt antal anställda: " + stapelData[0] + " ");
 				for(int i=0; i<stapelData[0]; i++){
@@ -114,11 +113,19 @@ abstract class CLI {
 				System.out.println();
 				break;
 
+			case '5':
+				//Visa anställd
+				Anställd enAnställd1 = hittaNamn(personalRegister, scanner);
+				//TODO: visa detaljinfo för den anställd som hittades
+				
+				System.out.println("\n namnsök slut " );
+				break;
+
 			case '6':
 				//uppdatera anställd
 				System.out.print("\nNamn på anställd: ");
 				anställdUppdateraString = scanner.nextLine();
-				anställdUppdatera = personalRegister.slåUppAnställd(anställdUppdateraString.trim());
+				Anställd anställdUppdatera = personalRegister.slåUppAnställd(anställdUppdateraString.trim());
 
 				if (anställdUppdatera == null) {
 					System.out.println("Det finns ingen anställd med det namnet.");
@@ -152,11 +159,11 @@ abstract class CLI {
 						}
 
 					}//Uppdatera Tekniker
-					
+
 					if (anställdUppdatera instanceof JavaProgrammer) {
 						//Uppdatera attribut specifika för Javaprogrammerare
-						System.out.print("Upptid " + ((JavaProgrammer) anställdUppdatera).getUppTid() + "): ");
-						
+						System.out.print("Upptid (" + ((JavaProgrammer) anställdUppdatera).getUppTid() + "): ");
+
 						uppdateraUppTid = false;
 						try {
 							nyUppTid = Double.parseDouble(scanner.nextLine().trim());
@@ -164,7 +171,7 @@ abstract class CLI {
 						} catch (NumberFormatException e) {
 							System.out.println("--ogilting input, hoppar över--");
 						}
-						
+
 						if (uppdateraUppTid) {
 							try {
 								((JavaProgrammer) anställdUppdatera).setUppTid(nyUppTid);
@@ -172,11 +179,11 @@ abstract class CLI {
 							}
 						}
 					}//Uppdatera Javaprogrammerare
-					
+
 					if (anställdUppdatera instanceof Receptionist) {
 						//Uppdatera attribut specifika för Receptionister
 						System.out.print("Sätt betyg för receptionisten " + ((Receptionist) anställdUppdatera).getNamn() + " (1-5), tomt för att hoppa över: ");
-						
+
 						sättBetyg = false;
 						try {
 							nyttBetyg = Integer.parseInt(scanner.nextLine().trim());
@@ -184,7 +191,7 @@ abstract class CLI {
 						} catch (NumberFormatException e) {
 							System.out.println("--ogiltig input, hoppar över--");
 						}
-						
+
 						if (sättBetyg) {
 							try {
 								((Receptionist) anställdUppdatera).setBetyg(nyttBetyg);
@@ -209,6 +216,32 @@ abstract class CLI {
 
 
 	}
+
+	private static Anställd hittaNamn (PersonalRegister personalRegister, Scanner scanner) {
+
+		String namn;
+		System.out.print("\nNamn (Minst ett tecken långt): ");
+
+		do {
+			namn = scanner.nextLine().trim();
+		} while (namn.length() == 0);
+		//- namn är här längre en noll stycken tecken.
+
+		Set<Anställd> personalCollection1 = personalRegister.getKopia();
+
+		Iterator<Anställd> iter = personalCollection1.iterator();	//  
+		while (iter.hasNext()) {
+			Anställd enAnställd = iter.next();
+			if ( enAnställd.getNamn().equals(namn)){
+				System.out.println("Anställd funnen: " + enAnställd);
+				return enAnställd;}  //-- 
+		} //- of while
+		
+		//-- Inget namn funnet i personallistan
+		System.out.println("Inget personal med namn: " + namn);
+		return null;
+
+	} //hittaAnställd
 
 	private static boolean läggTillAnställd (PersonalRegister personalRegister, Scanner scanner) {
 

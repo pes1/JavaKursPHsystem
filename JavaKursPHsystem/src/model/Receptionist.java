@@ -8,13 +8,18 @@ public class Receptionist extends Anställd {
 	
 	private int[] betyg = new int[10];
 	private int nästaBetyg = 0;
-	private double kundnöjdhet  = 2;  
-	//TODO: medel av 10 sista nöjdhetsrapporterna med betyg 1-5
 
+	//Constructor
 	public Receptionist(String namn) {
 		super(namn);
 	}
 	
+	//Methods
+	@Override
+	public String toString() {
+		return "Receptionist " + getNamn();
+	}
+
 	@Override
 	public long getBasMånadsLön() {
 		return basMånadsLön;
@@ -25,13 +30,9 @@ public class Receptionist extends Anställd {
 		return basMånadsBonus;
 	}
 
-	public double getKundnöjdhet() {
-		return kundnöjdhet;
-	}
-
 	@Override
 	public long getBonus() {
-		return (int)kundnöjdhet * basMånadsBonus;
+		return (long) (calcKundnöjdhet() * getBasMånadsBonus());
 	}
 
 	@Override
