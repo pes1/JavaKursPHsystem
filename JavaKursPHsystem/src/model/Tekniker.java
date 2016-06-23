@@ -15,6 +15,7 @@ public class Tekniker extends Anställd {
 
 	//Methods ---------------------------------------------------
 
+	//TODO: gör en klassmetod som returnerar benämningen "Tekniker", och använd den här
 	@Override
 	public String toString() {
 		return "Tekniker " + getNamn();

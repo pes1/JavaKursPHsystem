@@ -14,6 +14,8 @@ import model.Tekniker;
 abstract class CLI {
 
 	static void visaCLI(PersonalRegister personalRegister, Scanner scanner){
+		
+		//Variables
 		String kommandoString;
 		String tempAnställdString;
 		String nyttNamn;
@@ -22,8 +24,8 @@ abstract class CLI {
 		int nyttBetyg = 0;
 		boolean sättBetyg = false;
 		char kommando = '#';
-		int antalRoller = 3; //antal Yrkeskategorier
-		int[] stapelData = new int[antalRoller + 1];
+		int antalYrkeskategorier = 3;
+		int[] stapelData = new int[antalYrkeskategorier + 1];
 
 
 		while(true){
@@ -89,7 +91,8 @@ abstract class CLI {
 
 			case '4':
 				//personalfördenling, stapeldiagram
-				//TODO: hantera okända personalkategorier, för den händelse någon lägger till en ny kategori utan att uppdatera denna klass
+				//TODO: ny metod för detta; gör styrvariablerna till anropsvariabler för att ta bort dom från klassens lokala variabler 
+				//TODO: skriv ut en stapel för okända personalkategorier, för det fall någon lägger till en personalkategori utan att uppdatera denna klass
 				stapelData = personalRegister.getAntalAnställda();
 				System.out.print("Totalt antal anställda: " + stapelData[0] + " ");
 				for(int i=0; i<stapelData[0]; i++){
@@ -321,15 +324,4 @@ abstract class CLI {
 
 	} //läggTillAnställd
 	
-	public static void taBortAnställd(PersonalRegister personalRegister, String namn) {
-		boolean framgång = personalRegister.taBortAnställd(namn);
-		if (framgång) {
-			System.out.println("Anställd borttagen.");
-		} else {
-			System.out.println("Gick inte att ta bort anställd.");
-		}
-		
-		
-	}//taBortAnställd
-
 }//Class

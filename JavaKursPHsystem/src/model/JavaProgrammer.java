@@ -47,11 +47,11 @@ public class JavaProgrammer extends Anställd {
 		return getBasMånadsLön() +  getBonus();
 	}
 	
-	
 	public double getUppTid() {
 		return uppTid;
 	}
 	
+	//TODO: kasta undantag vid orimlig indata
 	public void setUppTid(double nyUppTid) {
 		if(       nyUppTid > 1.0) { this.uppTid = 1.0;}
 		else if ( nyUppTid < 0.0) { this.uppTid = 0.0;}
