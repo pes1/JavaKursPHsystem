@@ -19,6 +19,8 @@ public class TestTekniker {
 		tekniker.setUppTid(.9);
 		
 		assertTrue(tekniker.getBonus() == 1800);
+		
+		assertTrue(tekniker.getMånadsLön() == 28800);
 	}
 
 }

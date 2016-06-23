@@ -5,6 +5,8 @@ public class Tekniker extends Anställd {
 	//Variables
 	private static long basMånadsLön   = 27000;
 	private static long basMånadsBonus = 2000;
+	
+	private static String befattning = "Tekniker";
 
 	private double uppTid = 1.0;
 
@@ -15,10 +17,9 @@ public class Tekniker extends Anställd {
 
 	//Methods ---------------------------------------------------
 
-	//TODO: gör en klassmetod som returnerar benämningen "Tekniker", och använd den här
 	@Override
 	public String toString() {
-		return "Tekniker " + getNamn();
+		return getBefattning() + " " + getNamn();
 	}
 
 	@Override
@@ -27,20 +28,24 @@ public class Tekniker extends Anställd {
 	}
 
 	@Override
-	public long getBasMånadsBonus(){
+	public long getBasMånadsBonus() {
 		return basMånadsBonus;
 	}
 
 	@Override
-	public long getBasMånadsLön(){
+	public long getBasMånadsLön() {
 		return basMånadsLön;
 	}
 
 	@Override
 	public long getMånadsLön() {
-		return getBasMånadsLön() +  getBonus();
+		return getBasMånadsLön() + getBonus();
 	}
 
+	public String getBefattning() {
+		return befattning;
+	}
+	
 	public double getUppTid() {
 		return uppTid;
 	}
