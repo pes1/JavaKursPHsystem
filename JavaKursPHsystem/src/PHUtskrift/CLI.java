@@ -120,8 +120,17 @@ abstract class CLI {
 			case '5':
 				//Visa anställd
 				Anställd enAnställd1 = hittaNamn(personalRegister, scanner);
-				//TODO: visa detaljinfo för den anställd som hittades
 				
+				if(enAnställd1!= null){
+					 System.out.println(enAnställd1);
+					 System.out.println("Basmånadslön: " + enAnställd1.getBasMånadsLön());
+					 System.out.println("Bonus: " + enAnställd1.getBonus());
+					 System.out.println("Slutgiltig lön: " + enAnställd1.getMånadsLön());
+					 
+					 if(enAnställd1 instanceof Receptionist) {
+						 System.out.println("Genomsnittlig kundnöjdhet: " + ((Receptionist) enAnställd1).calcKundnöjdhet());
+					 }
+				}
 				System.out.println("\n namnsök slut " );
 				break;
 
