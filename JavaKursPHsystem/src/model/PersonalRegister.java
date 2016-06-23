@@ -23,7 +23,8 @@ public class PersonalRegister {
 	public boolean taBortAnställd(String namn) {
 		for (Anställd anställd : personalCollection) {
 			if (anställd.getNamn().trim().equalsIgnoreCase(namn)) {
-				return personalCollection.remove(anställd);
+				personalCollection.remove(anställd);
+				return true;
 			}
 		}
 		return false;
@@ -55,6 +56,7 @@ public class PersonalRegister {
 		}
 	}
 	
+	//TODO: Returnerar detta en kopia även av de anställda? Går det att ändra i anställda genom att ändra i kopian av registret?
 	public Set<Anställd> getKopia (){
 		return new HashSet<Anställd>(personalCollection);
 	}

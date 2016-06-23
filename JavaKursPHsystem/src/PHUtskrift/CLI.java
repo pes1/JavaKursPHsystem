@@ -15,7 +15,7 @@ abstract class CLI {
 
 	static void visaCLI(PersonalRegister personalRegister, Scanner scanner){
 		String kommandoString;
-		String anställdUppdateraString;
+		String tempAnställdString;
 		String nyttNamn;
 		double nyUppTid = 0.0;
 		boolean uppdateraUppTid = false;
@@ -38,6 +38,7 @@ abstract class CLI {
 			System.out.println("4. Visa personalfördelning");
 			System.out.println("5. Visa anställd"); 
 			System.out.println("6. Uppdatera anställd");
+			System.out.println("7. Ta bort anställd");
 			System.out.println("\n0. Avsluta");
 
 			do {
@@ -124,23 +125,23 @@ abstract class CLI {
 			case '6':
 				//uppdatera anställd
 				System.out.print("\nNamn på anställd: ");
-				anställdUppdateraString = scanner.nextLine();
-				Anställd anställdUppdatera = personalRegister.slåUppAnställd(anställdUppdateraString.trim());
+				Anställd tempAnställd = personalRegister.slåUppAnställd(scanner.nextLine().trim());
 
-				if (anställdUppdatera == null) {
+				if (tempAnställd == null) {
 					System.out.println("Det finns ingen anställd med det namnet.");
+					//TODO: lägg in break och ta bort else-satsen nedan.
 				} else {
-					System.out.print("Nytt namn för " + anställdUppdatera.getNamn() + " (Enter för att hoppa över): ");
+					System.out.print("Nytt namn för " + tempAnställd.getNamn() + " (Enter för att hoppa över): ");
 					nyttNamn = scanner.nextLine();
 					try {
-						anställdUppdatera.setNamn(nyttNamn);
+						tempAnställd.setNamn(nyttNamn);
 					} catch (IllegalArgumentException e) {
 						System.out.println("--hoppar över--");
 					}
 
-					if (anställdUppdatera instanceof Tekniker) {
+					if (tempAnställd instanceof Tekniker) {
 						//Uppdatera attribut specifika för Tekniker
-						System.out.print("Upptid (" + ((Tekniker) anställdUppdatera).getUppTid() + "): ");
+						System.out.print("Upptid (" + ((Tekniker) tempAnställd).getUppTid() + "): ");
 
 						uppdateraUppTid = false;
 						try {
@@ -152,7 +153,7 @@ abstract class CLI {
 
 						if (uppdateraUppTid) {
 							try {
-								((Tekniker) anställdUppdatera).setUppTid(nyUppTid);
+								((Tekniker) tempAnställd).setUppTid(nyUppTid);
 							} catch (IllegalArgumentException e) {
 								System.out.println("--ogiltig input, hoppar över--");
 							}
@@ -160,9 +161,9 @@ abstract class CLI {
 
 					}//Uppdatera Tekniker
 
-					if (anställdUppdatera instanceof JavaProgrammer) {
+					if (tempAnställd instanceof JavaProgrammer) {
 						//Uppdatera attribut specifika för Javaprogrammerare
-						System.out.print("Upptid (" + ((JavaProgrammer) anställdUppdatera).getUppTid() + "): ");
+						System.out.print("Upptid (" + ((JavaProgrammer) tempAnställd).getUppTid() + "): ");
 
 						uppdateraUppTid = false;
 						try {
@@ -174,15 +175,15 @@ abstract class CLI {
 
 						if (uppdateraUppTid) {
 							try {
-								((JavaProgrammer) anställdUppdatera).setUppTid(nyUppTid);
+								((JavaProgrammer) tempAnställd).setUppTid(nyUppTid);
 							} catch (IllegalArgumentException e) {
 							}
 						}
 					}//Uppdatera Javaprogrammerare
 
-					if (anställdUppdatera instanceof Receptionist) {
+					if (tempAnställd instanceof Receptionist) {
 						//Uppdatera attribut specifika för Receptionister
-						System.out.print("Sätt betyg för receptionisten " + ((Receptionist) anställdUppdatera).getNamn() + " (1-5), tomt för att hoppa över: ");
+						System.out.print("Sätt betyg för receptionisten " + ((Receptionist) tempAnställd).getNamn() + " (1-5), tomt för att hoppa över: ");
 
 						sättBetyg = false;
 						try {
@@ -194,7 +195,7 @@ abstract class CLI {
 
 						if (sättBetyg) {
 							try {
-								((Receptionist) anställdUppdatera).setBetyg(nyttBetyg);
+								((Receptionist) tempAnställd).setBetyg(nyttBetyg);
 							} catch (IllegalArgumentException e) {
 								System.out.println("--ogiltig input, hoppar över--");
 							}
@@ -204,6 +205,23 @@ abstract class CLI {
 
 				break;
 
+			case '7':
+				System.out.print("Namn på anställd att ta bort (Enter för att avbryta: ");
+				tempAnställdString = scanner.nextLine().trim();
+				
+				if(tempAnställdString.length() == 0) {
+					System.out.println("--Hoppar över--");
+					break;
+				}
+				
+				if(	personalRegister.taBortAnställd(tempAnställdString)){
+					System.out.println("Anställd borttagen.");
+				} else {
+					System.out.println("Det gick inte att ta bort.");
+				}
+				
+				break;
+				
 			case '0':
 				return;
 
@@ -215,10 +233,10 @@ abstract class CLI {
 		}//while
 
 
-	}
+	}//visaCLI
 
 	private static Anställd hittaNamn (PersonalRegister personalRegister, Scanner scanner) {
-
+		//TODO: Flytta till klassen PersonalRegister, så att sökningen sker där snarare än i CLI-klassen
 		String namn;
 		System.out.print("\nNamn (Minst ett tecken långt): ");
 
@@ -302,5 +320,16 @@ abstract class CLI {
 		} //switch
 
 	} //läggTillAnställd
+	
+	public static void taBortAnställd(PersonalRegister personalRegister, String namn) {
+		boolean framgång = personalRegister.taBortAnställd(namn);
+		if (framgång) {
+			System.out.println("Anställd borttagen.");
+		} else {
+			System.out.println("Gick inte att ta bort anställd.");
+		}
+		
+		
+	}//taBortAnställd
 
 }//Class
